@@ -2,24 +2,23 @@
   box-sizing: border-box;
   font-family: Arial, sans-serif;
   list-style: none;
-  
 }
 
-.body{
-   background-color: #f0f0f0;
+.body {
+  background-color: #fafafa;
 }
 
 .header {
   padding: 10px;
   margin-bottom: 10px;
-  background-color: #0a9d8d;
+  background-color: #c17da7;
   color: white;
   text-align: center;
   margin: 40px;
 }
 
 .header h1 {
-  background-color: #0a9d8d;
+  background-color: #c17da7;
 }
 
 .search {
@@ -37,10 +36,17 @@
 .search-input {
   width: 80%;
   padding: 10px 0 10px 15px;
+  border-color: #c17da7;
+  border: 2px solid #c17da7;
 }
 
 .search-button {
   padding: 10px 40px 10px 40px;
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+  background-color: #c17da7;
 }
 
 .shop {
@@ -74,11 +80,23 @@
   background-color: white;
 }
 
+.add-button {
+  padding: 8px 12px;
+  cursor: pointer;
+  font-weight: bold;
+  background-color: #fff;
+  color: #4caf50;
+  border: 2px solid #4caf50;
+}
 
-.list-element li button {
-    background-color: green;
-    color: #f0f0f0;
-    padding: 10px 20px;
+.add-button--red {
+  padding: 8px 12px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  background-color: #fff;
+  color: #e53935;
+  border: 2px solid #e53935;
 }
 
 .product-img img {
@@ -95,4 +113,13 @@
   justify-content: center;
   text-align: center;
   padding: 0 10px;
+}
+
+.button-remove {
+  padding: 8px 12px;
+  cursor: pointer;
+  font-weight: bold;
+  background-color: #fff;
+  color: #e53935;
+  border: 2px solid #e53935;
 }
