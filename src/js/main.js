@@ -11,6 +11,18 @@ const searchButton = document.querySelector(".search-button");
 let elements = []; // variable para todos los productos
 let cart = []; // Variable para productos del carrito
 
+const saveCart = () => {
+  localStorage.setItem("cart", JSON.stringify(cart));
+};
+
+const loadCart = () => {
+  const savedCart = localStorage.getItem("cart");
+  if (savedCart) {
+    cart = JSON.parse(savedCart);
+    renderCart();
+  }
+};
+
 const renderElements = (items) => {
   list.innerHTML = "";
 
@@ -18,9 +30,16 @@ const renderElements = (items) => {
     const item = document.createElement("li");
 
     const button = document.createElement("button");
-    button.classList.add("add-button");
-    button.textContent = "Add";
     button.dataset.id = itemData.id;
+
+    const isInCart = cart.some((item) => item.id === itemData.id);
+    if (isInCart) {
+      button.textContent = "Remove";
+      button.classList.add("add-button--red");
+    } else {
+      button.textContent = "Add";
+      button.classList.add("add-button");
+    }
 
     item.innerHTML = `
       <div class="product-img"><img src="${itemData.image}" alt="${itemData.title}"></div>
@@ -47,13 +66,14 @@ const renderElements = (items) => {
       }
 
       renderCart();
+      saveCart();
     });
 
     list.appendChild(item);
   });
 };
 
-// Render cart items
+// Rederizar el carrito
 const renderCart = () => {
   cartList.innerHTML = "";
 
@@ -71,6 +91,7 @@ const renderCart = () => {
 const handleClickRemove = () => {
   cart = [];
   renderCart();
+  saveCart();
 
   document.querySelectorAll(".add-button, .add-button--red").forEach((btn) => {
     // tengo que poner esto porque al haber cambiado la clase del botón para cambiarle los colores no puedo poner solo .add-button
@@ -96,5 +117,6 @@ fetch("https://fakestoreapi.com/products")
   .then((response) => response.json())
   .then((data) => {
     elements = data;
+    loadCart();
     renderElements(elements);
   });
